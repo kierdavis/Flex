@@ -14,7 +14,11 @@ public class FlexDispatcher {
         children = null;
     }
     
-    protected Map<String, FlexDispatcher> getOrCreateMap() {
+    public FlexHandlingContext getHandlingContext() {
+        return hctx;
+    }
+    
+    protected Map<String, FlexDispatcher> getChildren() {
         if (children == null) {
             children = new HashMap<String, FlexDispatcher>();
         }
@@ -23,10 +27,10 @@ public class FlexDispatcher {
     }
     
     protected FlexDispatcher getOrCreateChild(String name) {
-        FlexDispatcher child = getOrCreateMap().get(name.toLowerCase());
+        FlexDispatcher child = getChildren().get(name.toLowerCase());
         if (child == null) {
             child = new FlexDispatcher();
-            getOrCreateMap().put(name.toLowerCase(), child);
+            getChildren().put(name.toLowerCase(), child);
         }
         
         return child;
@@ -42,6 +46,38 @@ public class FlexDispatcher {
             String[] remaining = Arrays.copyOfRange(path, 1, path.length);
             
             getOrCreateChild(name).add(remaining, hctx_);
+        }
+    }
+    
+    public void extend(String[] path, FlexDispatcher source) {
+        if (path == null || path.length == 0) {
+            hctx = source.hctx;
+            getChildren().putAll(source.children);
+        }
+        
+        else {
+            String name = path[0];
+            String[] remaining = Arrays.copyOfRange(path, 1, path.length);
+            
+            getOrCreateChild(name).extend(remaining, source);
+        }
+    }
+    
+    public FlexDispatcher traverse(String[] path) {
+        if (path == null || path.length == 0) {
+            return this;
+        }
+        
+        else {
+            String name = path[0];
+            String[] remaining = Arrays.copyOfRange(path, 1, path.length);
+            
+            if (children.containsKey(name)) {
+                return children.get(name).traverse(remaining);
+            }
+            else {
+                return null;
+            }
         }
     }
     

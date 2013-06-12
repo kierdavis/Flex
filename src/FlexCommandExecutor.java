@@ -80,6 +80,15 @@ public class FlexCommandExecutor implements CommandExecutor {
         }
     }
     
+    public void alias(String originalPath, String aliasPath) {
+        alias(originalPath.split(" "), aliasPath.split(" "));
+    }
+    
+    public void alias(String[] originalPath, String[] aliasPath) {
+        FlexDispatcher source = root.traverse(originalPath);
+        root.extend(aliasPath, source);
+    }
+    
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         FlexCommandContext ctx = new FlexCommandContext(sender, cmd, label, args);
         return root.dispatch(ctx);
