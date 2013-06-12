@@ -93,6 +93,19 @@ public class FlexCommandContext {
         return arg;
     }
     
+    public String argsString(int start) {
+        StringBuilder b = new StringBuilder();
+        for (int i = start; i < args.length; i++) {
+            if (i > 0) b.append(" ");
+            b.append(args[i]);
+        }
+        return b.toString();
+    }
+    
+    public String argsString() {
+        return argsString(0);
+    }
+    
     public String getPath() {
         return pathBuilder.toString();
     }
