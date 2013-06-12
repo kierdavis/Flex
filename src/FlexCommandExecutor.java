@@ -34,7 +34,7 @@ public class FlexCommandExecutor implements CommandExecutor {
                 FlexHandlingContext hctx = new FlexHandlingContext(handler, m);
                 hctx.validate();
                 
-                root.add(path, hctx)
+                root.add(path, hctx);
             }
         }
     }
