@@ -29,7 +29,7 @@ public class FlexHandlingContext {
     }
     
     protected String methodDesc() {
-        return "method " + method.getName() + " of class " + object.getClass().getPackage() + "." + object.getClass().getName() + " in plugin " + plugin.getName();
+        return "method " + method.getName() + " of class " + object.getClass().getName() + " in plugin " + plugin.getName();
     }
     
     public void validate() throws FlexBuildingException {
@@ -40,7 +40,7 @@ public class FlexHandlingContext {
         }
         
         Class<?> returnType = method.getReturnType();
-        if (returnType != Boolean.class) {
+        if (!returnType.equals(Boolean.class)) {
             throw new FlexBuildingException("FlexHandler " + methodDesc() + " must return a boolean");
         }
     }
