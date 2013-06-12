@@ -45,10 +45,10 @@ public class FlexCommandExecutor implements CommandExecutor {
     
     // -------------------------------------------------------------------------
     
-    protected FlexDispatcher root;
+    protected FlexRootDispatcher root;
     
     protected FlexCommandExecutor() {
-        root = new FlexDispatcher();
+        root = new FlexRootDispatcher();
     }
     
     public void addHandler(Plugin plugin, Object handler) {
@@ -60,8 +60,6 @@ public class FlexCommandExecutor implements CommandExecutor {
                     FlexHandler annotation = m.getAnnotation(FlexHandler.class);
                     String[] path = annotation.path().split(" ");
                     String rootName = path[0];
-                    
-                    plugin.getServer().getPluginCommand(rootName).setExecutor(this);
                     
                     FlexHandlingContext hctx = new FlexHandlingContext(plugin, handler, m);
                     hctx.validate();
