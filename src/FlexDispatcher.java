@@ -10,15 +10,15 @@ public class FlexDispatcher {
     
     public FlexDispatcher() {
         hctx = null;
-        map = null;
+        children = null;
     }
     
     protected Map<String, FlexDispatcher> getOrCreateMap() {
-        if (map == null) {
-            map = new HashMap<String, FlexDispatcher>();
+        if (children == null) {
+            children = new HashMap<String, FlexDispatcher>();
         }
         
-        return map;
+        return children;
     }
     
     protected FlexDispatcher getOrCreateChild(String name) {
@@ -44,12 +44,12 @@ public class FlexDispatcher {
         }
     }
     
-    public boolean dispatch(CommandContext ctx) {
-        if (ctx.numArgs() > 0 && map != null) {
+    public boolean dispatch(FlexCommandContext ctx) {
+        if (ctx.numArgs() > 0 && children != null) {
             String name = ctx.getArg(0).toLowerCase();
             
-            if (map.containsKey(name)) {
-                FlexDispatcher child = map.get(name);
+            if (children.containsKey(name)) {
+                FlexDispatcher child = children.get(name);
                 ctx.popArg(0);
                 ctx.pushPathComponent(name);
                 return child.dispatch(ctx);

@@ -42,7 +42,7 @@ public class FlexCommandContext {
             return args[pos];
         }
         else {
-            error("Not enough arguments for command '" + getPath + "'");
+            error("Not enough arguments for command '" + getPath() + "'");
             return null;
         }
     }
