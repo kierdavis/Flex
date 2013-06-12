@@ -1,34 +1,59 @@
 package com.kierdavis.flex;
 
 import java.lang.reflect.Method;
+import java.util.logging.Level;
+import org.bukkit.plugin.Plugin;
 
 public class FlexHandlingContext {
+    protected Plugin plugin;
     protected Object object;
     protected Method method;
     
-    public FlexHandlingContext(Object object_, Method method_) {
+    public FlexHandlingContext(Plugin plugin_, Object object_, Method method_) {
+        plugin = plugin_;
         object = object_;
         method = method_;
     }
     
+    public Plugin getPlugin() {
+        return plugin;
+    }
+    
+    public Object getObject() {
+        return object;
+    }
+    
+    public Method getMethod() {
+        return method;
+    }
+    
     protected String methodDesc() {
-        return "'" + method.getName() + "' of '" + object.getClass().getName() + "'";
+        return "method " + method.getName() + " of class " + object.getClass().getPackage() + "." + object.getClass().getName() + " in plugin " + plugin.getName();
     }
     
     public void validate() throws FlexBuildingException {
         Class<?>[] paramTypes = method.getParameterTypes();
         
         if (paramTypes.length != 1 || paramTypes[0] != FlexCommandContext.class) {
-            throw new FlexBuildingException("FlexHandler method " + methodDesc() + " must have exactly one parameter (of type FlexCommandContext)");
+            throw new FlexBuildingException("FlexHandler " + methodDesc() + " must have exactly one parameter (of type FlexCommandContext)");
         }
         
         Class<?> returnType = method.getReturnType();
         if (returnType != Boolean.class) {
-            throw new FlexBuildingException("FlexHandler method " + methodDesc() + " must return a boolean");
+            throw new FlexBuildingException("FlexHandler " + methodDesc() + " must return a boolean");
         }
     }
     
     public boolean invoke(FlexCommandContext ctx) {
-        return (boolean) method.invoke(object, ctx);
+        try {
+            return (boolean) method.invoke(object, ctx);
+        }
+        
+        catch (IllegalAccessException e) {
+            FlexCommandExecutor.logException(e, "Unexpected IllegalAccessException when attempting to invoke " + methodDesc());
+            
+            ctx.error("There was an unhandled error while executing the command. Please contact an administrator.");
+            return false;
+        }
     }
 }

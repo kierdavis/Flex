@@ -91,4 +91,12 @@ public class FlexCommandContext {
     public void error(String message) {
         sender.sendMessage(ChatColor.RED + "Error: " + message);
     }
+    
+    public Server getServer() {
+        return sender.getServer();
+    }
+    
+    public Logger getLogger() {
+        return getServer().getLogger();
+    }
 }
