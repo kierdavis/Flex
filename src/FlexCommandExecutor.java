@@ -1,9 +1,10 @@
 package com.kierdavis.flex;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.logging.Level;
+import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

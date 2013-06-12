@@ -1,7 +1,9 @@
 package com.kierdavis.flex;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 import org.bukkit.ChatColor;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
