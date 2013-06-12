@@ -37,7 +37,7 @@ public class FlexCommandContext {
             return (Player) sender;
         }
         else {
-            ctx.error("This command can only be used by players.");
+            error("This command can only be used by players.");
             return null;
         }
     }
