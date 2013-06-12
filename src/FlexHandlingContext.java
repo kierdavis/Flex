@@ -1,5 +1,6 @@
 package com.kierdavis.flex;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import org.bukkit.plugin.Plugin;
