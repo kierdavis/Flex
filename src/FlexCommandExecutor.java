@@ -84,7 +84,7 @@ public class FlexCommandExecutor implements CommandExecutor {
     protected FlexRootDispatcher root;
     
     /**
-     * This constructor should not be used - the {@link getInstance} method
+     * This constructor should not be used - the {@link #getInstance} method
      * should be used instead.
      */
     protected FlexCommandExecutor() {
