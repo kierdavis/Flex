@@ -1,4 +1,4 @@
-package com.kierdavis.kmail;
+package com.kierdavis.flex;
 
 public class FlexBuildingException extends Exception {
     public FlexBuildingException(String message) {
