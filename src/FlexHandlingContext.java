@@ -40,7 +40,7 @@ public class FlexHandlingContext {
         }
         
         Class<?> returnType = method.getReturnType();
-        if (!returnType.equals(Boolean.class)) {
+        if (!returnType.equals(boolean.class)) {
             throw new FlexBuildingException("FlexHandler " + methodDesc() + " must return a boolean");
         }
     }
