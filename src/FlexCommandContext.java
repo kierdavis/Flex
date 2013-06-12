@@ -55,7 +55,7 @@ public class FlexCommandContext {
     }
     
     public String getArg(int pos) {
-        if (pos <= args.length) {
+        if (pos < args.length) {
             return args[pos];
         }
         else {
