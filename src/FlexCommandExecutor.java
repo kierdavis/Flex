@@ -58,7 +58,7 @@ public class FlexCommandExecutor implements CommandExecutor {
             for (Method m : handler.getClass().getMethods()) {
                 if (m.isAnnotationPresent(FlexHandler.class)) {
                     FlexHandler annotation = m.getAnnotation(FlexHandler.class);
-                    String[] path = annotation.path().split(" ");
+                    String[] path = annotation.value().split(" ");
                     String rootName = path[0];
                     
                     FlexHandlingContext hctx = new FlexHandlingContext(plugin, handler, m);
