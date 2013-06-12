@@ -1,12 +1,12 @@
 package com.kierdavis.flex;
 
+import org.bukkit.Bukkit;
+
 public class FlexRootDispatcher extends FlexDispatcher {
     @Override
-    public void add(String[] path, FlexHandlingContext hctx) {
-        super.add(path, hctx);
-        
-        String name = path[0];
-        hctx.getPlugin().getServer().getPluginCommand(name).setExecutor(FlexCommandExecutor.getInstance());
+    protected FlexDispatcher getOrCreateChild(String name) {
+        Bukkit.getPluginCommand(name).setExecutor(FlexCommandExecutor.getInstance());
+        return super.getOrCreateChild(name);
     }
     
     @Override
