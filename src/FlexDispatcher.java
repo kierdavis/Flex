@@ -52,7 +52,9 @@ public class FlexDispatcher {
     public void extend(String[] path, FlexDispatcher source) {
         if (path == null || path.length == 0) {
             hctx = source.hctx;
-            getChildren().putAll(source.children);
+            if (source.children != null) {
+                getChildren().putAll(source.children);
+            }
         }
         
         else {
