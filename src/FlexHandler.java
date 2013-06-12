@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface FlexHandler {
     String value(); // Path
-    String permission() default null;
+    String permission() default "";
     boolean playerOnly() default false;
-    String[] argNames() default null;
 }

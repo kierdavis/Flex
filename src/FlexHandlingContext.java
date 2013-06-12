@@ -52,7 +52,7 @@ public class FlexHandlingContext {
     }
     
     public boolean invoke(FlexCommandContext ctx) {
-        if (annotation.permission() != null) {
+        if (annotation.permission().length() > 0) {
             if (!ctx.getSender().hasPermission(annotation.permission())) {
                 ctx.error("You don't have permission to use this command.");
                 return false;
@@ -66,25 +66,25 @@ public class FlexHandlingContext {
             }
         }
         
-        if (annotation.argNames() != null) {
-            if (ctx.numArgs() < annotation.argNames().length) {
-                StringBuilder b = new StringBuilder();
-                b.append("Usage: /");
-                b.append(ctx.getPath());
-                
-                for (String argName : annotation.argNames()) {
-                    b.append(" ");
-                    if (argName.endsWith("?")) {
-                        b.append("[").append(argName.substring(0, argName.length() - 1)).append("]");
-                    } else {
-                        b.append("<").append(argName).append(">");
-                    }
-                }
-                
-                error(b.toString());
-                return false;
-            }
-        }
+        //if (annotation.argNames() != null) {
+        //    if (ctx.numArgs() < annotation.argNames().length) {
+        //        StringBuilder b = new StringBuilder();
+        //        b.append("Usage: /");
+        //        b.append(ctx.getPath());
+        //        
+        //        for (String argName : annotation.argNames()) {
+        //            b.append(" ");
+        //            if (argName.endsWith("?")) {
+        //                b.append("[").append(argName.substring(0, argName.length() - 1)).append("]");
+        //            } else {
+        //                b.append("<").append(argName).append(">");
+        //            }
+        //        }
+        //        
+        //        ctx.error(b.toString());
+        //        return false;
+        //    }
+        //}
         
         try {
             return (boolean) method.invoke(object, ctx);
