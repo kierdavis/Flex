@@ -55,5 +55,12 @@ public class FlexHandlingContext {
             ctx.error("There was an unhandled error while executing the command. Please contact an administrator.");
             return false;
         }
+        
+        catch (InvocationTargetException e) {
+            FlexCommandExecutor.logException(e, "Unexpected InvocationTargetException when attempting to invoke " + methodDesc());
+            
+            ctx.error("There was an unhandled error while executing the command. Please contact an administrator.");
+            return false;
+        }
     }
 }

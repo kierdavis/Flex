@@ -29,9 +29,9 @@ public class FlexCommandExecutor implements CommandExecutor {
         
         if (!it.hasNext()) return "";
         
-        b.append((String) it.next());
+        b.append(((Plugin) it.next()).getName());
         while (it.hasNext()) {
-            b.append(", ").append((String) it.next());
+            b.append(", ").append(((Plugin) it.next()).getName());
         }
         
         return b.toString();
