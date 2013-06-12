@@ -7,6 +7,7 @@ import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class FlexCommandContext {
     protected CommandSender sender;
@@ -25,6 +26,20 @@ public class FlexCommandContext {
     
     public CommandSender getSender() {
         return sender;
+    }
+    
+    public boolean isPlayer() {
+        return sender instanceof Player;
+    }
+    
+    public Player getPlayer() {
+        if (isPlayer()) {
+            return (Player) sender;
+        }
+        else {
+            ctx.error("This command can only be used by players.");
+            return null;
+        }
     }
     
     public Command getCommand() {
