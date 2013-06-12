@@ -90,6 +90,10 @@ public class FlexCommandContext {
         pathBuilder.append(part);
     }
     
+    public void info(String message) {
+        sender.sendMessage(ChatColor.GOLD + message);
+    }
+    
     public void error(String message) {
         sender.sendMessage(ChatColor.RED + "Error: " + message);
     }

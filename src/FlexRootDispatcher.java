@@ -23,7 +23,7 @@ public class FlexRootDispatcher extends FlexDispatcher {
         //    return hctx.invoke(ctx);
         //}
         
-        ctx.error("No such command '" + name + "'");
+        invalidCommand(ctx, name);
         return false;
     }
 }

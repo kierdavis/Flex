@@ -60,7 +60,22 @@ public class FlexDispatcher {
             return hctx.invoke(ctx);
         }
         
-        ctx.error("No such command '" + ctx.getPath() + "'");
+        invalidCommand(ctx, ctx.getPath());
         return false;
+    }
+    
+    public void invalidCommand(FlexCommandContext ctx, String path) {
+        if (children == null) {
+            ctx.error("No such command /" + path);
+        }
+        
+        else {
+            ctx.info("Subcommands of /" + path + ":");
+            
+            Iterator<String> it = children.keySet().iterator();
+            while (it.hasNext()) {
+                ctx.info("  /" + path + " " + (String) it.next());
+            }
+        }
     }
 }
