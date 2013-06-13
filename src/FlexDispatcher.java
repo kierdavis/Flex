@@ -103,7 +103,7 @@ public class FlexDispatcher {
         return false;
     }
     
-    public void invalidCommand(FlexCommandContext ctx, String path) {
+    protected void invalidCommand(FlexCommandContext ctx, String path) {
         if (children == null) {
             ctx.error("No such command /" + path);
         }
