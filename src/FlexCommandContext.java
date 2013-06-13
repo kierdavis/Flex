@@ -139,7 +139,7 @@ public class FlexCommandContext {
      * sender informing them that not enough arguments were supplied to the
      * command, and <code>null</code> is returned.
      *
-     * To avoid sending the message, use <code>ctx.getArg(pos, null)<code>.
+     * To avoid sending the message, use <code>ctx.getArg(pos, null)</code>.
      *
      * @param pos   the argument index to retrieve
      * @return      the specified argument, or <code>null</code>
@@ -185,7 +185,7 @@ public class FlexCommandContext {
     }
     
     /**
-     * Removes and returns the first argument. <code>null<code> is returned if
+     * Removes and returns the first argument. <code>null</code> is returned if
      * there are not enough arguments.
      *
      * @return the popped argument
