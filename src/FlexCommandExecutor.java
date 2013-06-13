@@ -174,7 +174,7 @@ public class FlexCommandExecutor implements CommandExecutor {
      * Executes the given command, returning its success.
      *
      * @param sender    the source of the command
-     * @param command   the command which was executed
+     * @param cmd       the command which was executed
      * @param label     the alias of the command which was used
      * @param args      the command arguments passed
      * @return          <code>true</code> if the command succeeded, else

@@ -10,9 +10,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Contains the information provided to the top-level
- * {@link org.bukkit.command.CommandExecutor#onCommand} implementation, and also
- * provides utility methods for handling code.
+ * Contains the information provided to the top-level onCommand implementation,
+ * and also provides utility methods for handling code.
+ *
+ * @see org.bukkit.command.CommandExecutor#onCommand
  */
 public class FlexCommandContext {
     /**
@@ -43,13 +44,13 @@ public class FlexCommandContext {
     protected StringBuilder pathBuilder;
     
     /**
-     * Constructor. The arguments should be those passed to
-     * {@link org.bukkit.command.CommandExecutor#onCommand} by Bukkit.
+     * Constructor. The arguments should be those passed to onCommand by Bukkit.
      *
      * @param sender_   the source of the command
      * @param cmd_      the command which was executed
      * @param label_    the alias of the command which was used
      * @param args_     the command arguments passed
+     * @see org.bukkit.command.CommandExecutor#onCommand
      */
     public FlexCommandContext(CommandSender sender_, Command cmd_, String label_, String[] args_) {
         sender = sender_;
@@ -113,7 +114,7 @@ public class FlexCommandContext {
     /**
      * Returns the alias used for the top-level command. This is part of
      * Bukkit's alias system, not the one implemented in Flex with the
-     * {@link FlexCommandExecutor#alias)} methods. To find the Flex alias use
+     * {@link FlexCommandExecutor#alias} methods. To find the Flex alias use
      * {@link #getPath}.
      *
      * @return the Bukkit alias for the command
@@ -138,11 +139,11 @@ public class FlexCommandContext {
      * sender informing them that not enough arguments were supplied to the
      * command, and <code>null</code> is returned.
      *
-     * To avoid sending the message, use {@link #getArg(int, String)} with a
-     * <code>fallback<code> value of <code>null</code>.
+     * To avoid sending the message, use <code>ctx.getArg(pos, null)<code>.
      *
      * @param pos   the argument index to retrieve
      * @return      the specified argument, or <code>null</code>
+     * @see #getArg(int, String)
      */
     public String getArg(int pos) {
         if (pos < args.length) {
@@ -163,6 +164,7 @@ public class FlexCommandContext {
      * @param pos       the argument index to retrieve
      * @param fallback  the default value
      * @return          the specified argument, or <code>fallback</code>
+     * @see #getArg(int)
      */
     public String getArg(int pos, String fallback) {
         if (pos <= args.length) {
