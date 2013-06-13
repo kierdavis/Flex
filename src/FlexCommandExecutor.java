@@ -170,7 +170,16 @@ public class FlexCommandExecutor implements CommandExecutor {
         root.extend(aliasPath, source);
     }
     
-    // Documentation inherited from org.bukkit.command.CommandExecutor#onCommand
+    /**
+     * Executes the given command, returning its success.
+     *
+     * @param sender    the source of the command
+     * @param command   the command which was executed
+     * @param label     the alias of the command which was used
+     * @param args      the command arguments passed
+     * @return          <code>true</code> if the command succeeded, else
+     *                  <code>false</code>
+     */
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         FlexCommandContext ctx = new FlexCommandContext(sender, cmd, label, args);
         return root.dispatch(ctx);
