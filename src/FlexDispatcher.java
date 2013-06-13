@@ -89,7 +89,7 @@ public class FlexDispatcher {
             
             if (children.containsKey(name)) {
                 FlexDispatcher child = children.get(name);
-                ctx.popArg(0);
+                ctx.popArg();
                 ctx.pushPathComponent(name);
                 return child.dispatch(ctx);
             }

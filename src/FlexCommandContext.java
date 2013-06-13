@@ -184,18 +184,18 @@ public class FlexCommandContext {
         return args.length;
     }
     
-    public String popArg(int pos) {
-        String arg = getArg(pos);
+    /**
+     * Removes and returns the first argument. <code>null<code> is returned if
+     * there are not enough arguments.
+     *
+     * @return the popped argument
+     */
+    public String popArg() {
+        String arg = getArg(0, null);
         if (arg == null) {
             return null;
         }
         
-        args = Arrays.copyOfRange(args, 1, args.length);
-        return arg;
-    }
-    
-    public String popArg(int pos, String fallback) {
-        String arg = getArg(pos, fallback);
         args = Arrays.copyOfRange(args, 1, args.length);
         return arg;
     }
