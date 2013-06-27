@@ -60,6 +60,7 @@ MyPlugin.java:
     package net.example.myplugin;
     
     import com.kierdavis.flex.FlexCommandExecutor;
+    import org.bukkit.entity.Player;
     import org.bukkit.plugin.java.JavaPlugin;
     
     public class MyPlugin extends JavaPlugin {
@@ -68,6 +69,10 @@ MyPlugin.java:
             MyHandler handler = new MyHandler(this);
             
             FlexCommandExecutor.getInstance().addHandler(this, handler);
+        }
+        
+        public void createGroup(String groupName, Player owner) {
+            // .....
         }
     }
 
