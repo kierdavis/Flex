@@ -128,6 +128,17 @@ public class FlexDispatcher {
         else {
             ctx.info("Subcommands of /" + path + ":");
             
+            String mainArgUsage = "";
+            
+            if (hctx != null && !(hctx.getPermission() != null && !ctx.getSender().hasPermission(hctx.getPermission()))) {
+                if (hctx.getArgUsage() != null) {
+                    ctx.info("  /" + path + " " + hctx.getArgUsage());
+                }
+                else {
+                    ctx.info("  /" + path);
+                }
+            }
+            
             Iterator<String> it = children.keySet().iterator();
             while (it.hasNext()) {
                 String childName = (String) it.next();
@@ -135,12 +146,12 @@ public class FlexDispatcher {
                 String argUsage = "";
                 
                 if (child.hctx != null) {
-                    if (child.hctx.getArgUsage() != null) {
-                        argUsage = " " + child.hctx.getArgUsage();
-                    }
-                    
                     if (child.hctx.getPermission() != null && !ctx.getSender().hasPermission(child.hctx.getPermission())) {
                         continue;
+                    }
+                    
+                    if (child.hctx.getArgUsage() != null) {
+                        argUsage = " " + child.hctx.getArgUsage();
                     }
                 }
                 
