@@ -134,7 +134,7 @@ public class FlexDispatcher {
                 FlexDispatcher child = children.get(childName);
                 String argUsage = "";
                 
-                if (child.hctx != null)
+                if (child.hctx != null) {
                     if (child.hctx.getArgUsage() != null) {
                         argUsage = " " + child.hctx.getArgUsage();
                     }
