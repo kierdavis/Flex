@@ -120,7 +120,7 @@ public class FlexCommandExecutor implements CommandExecutor {
                     String[] path = annotation.value().split(" ");
                     String rootName = path[0];
                     
-                    FlexHandlingContext hctx = new FlexMethodHandlingContext(plugin, handler, m);
+                    FlexMethodHandlingContext hctx = new FlexMethodHandlingContext(plugin, handler, m);
                     hctx.validate();
                     
                     root.add(path, hctx);
@@ -129,7 +129,7 @@ public class FlexCommandExecutor implements CommandExecutor {
         }
         
         catch (FlexBuildingException e) {
-            logException(e, "Error when building command trees");
+            logException(plugin, e, "Error when building command trees: " + e.toString());
         }
     }
     

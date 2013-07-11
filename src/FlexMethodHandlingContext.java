@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import org.bukkit.plugin.Plugin;
 
-public class FlexMethodHandlingContext {
+public class FlexMethodHandlingContext implements FlexHandlingContext {
     protected Plugin plugin;
     protected Object object;
     protected Method method;
