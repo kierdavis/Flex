@@ -130,7 +130,15 @@ public class FlexDispatcher {
             
             Iterator<String> it = children.keySet().iterator();
             while (it.hasNext()) {
-                ctx.info("  /" + path + " " + (String) it.next());
+                String childName = (String) it.next();
+                FlexDispatcher child = children.get(childName);
+                String argUsage = "";
+                
+                if (child.hctx != null && child.hctx.getArgUsage() != null) {
+                    argUsage = " " + child.hctx.getArgUsage();
+                }
+                
+                ctx.info("  /" + path + " " + childName + argUsage);
             }
         }
     }

@@ -38,4 +38,13 @@ public @interface FlexHandler {
      * If this is true, the command will fail if the sender is not a player.
      */
     boolean playerOnly() default false;
+    
+    /**
+     * A string that represents how arguments should be passed to the command,
+     * used in help output. It is recommended that required argument names are
+     * enclosed in angle brackets (&lt;...&gt;) and optional argument names are
+     * enclosed in square brackets ([...]). Example for a fly-speed command:
+     * "&lt;speed&gt; [player]"
+     */
+    String argUsage() default "";
 }

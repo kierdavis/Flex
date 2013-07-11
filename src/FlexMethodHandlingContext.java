@@ -34,6 +34,10 @@ public class FlexMethodHandlingContext implements FlexHandlingContext {
         return annotation;
     }
     
+    public String getArgUsage() {
+        return annotation.argUsage();
+    }
+    
     protected String methodDesc() {
         return "method " + method.getName() + " of class " + object.getClass().getName() + " in plugin " + plugin.getName();
     }
