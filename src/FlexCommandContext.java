@@ -305,13 +305,13 @@ public class FlexCommandContext {
      * @return this command's dispatcher
      */
     public FlexDispatcher getDispatcher() {
-        return FlexCommandExecutor.getInstance().traverse(path.toArray());
+        return FlexCommandExecutor.getInstance().getRoot().traverse(path.toArray());
     }
     
     /**
      * Shows subcommand help for this command.
      */
     public void showSubcommands() {
-        getDispatcher().showSubcommands();
+        getDispatcher().showSubcommands(this, getPathString());
     }
 }
