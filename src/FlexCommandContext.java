@@ -320,7 +320,7 @@ public class FlexCommandContext {
      * Shows subcommand help for the parent command. Use when implementing help
      * as a subcommand.
      */
-    public void showSubcommands() {
+    public void showParentSubcommands() {
         getDispatcher().getParent().showSubcommands(this, getPathString());
     }
 }
