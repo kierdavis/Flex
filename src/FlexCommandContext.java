@@ -232,8 +232,18 @@ public class FlexCommandContext {
      *
      * @return the command path
      */
-    public List<String> getPath() {
-        return path;
+    public String[] getPath() {
+        return path.toArray(new String[0]);
+    }
+    
+    /**
+     * Returns the parent command path (the top-level command name followed by
+     * subcommand names).
+     *
+     * @return the parent command path
+     */
+    public String[] getParentPath() {
+        return path.subList(0, path.size() - 1).toArray(new String[0]);
     }
     
     /**
@@ -243,7 +253,17 @@ public class FlexCommandContext {
      * @return the command path
      */
     public String getPathString() {
-        return getPathString(path);
+        return getPathString(getPath());
+    }
+    
+    /**
+     * Returns the parent command path (the top-level command name followed by
+     * subcommand names) as a space-seperated string.
+     *
+     * @return the parent command path
+     */
+    public String getParentPathString() {
+        return getPathString(getParentPath());
     }
     
     /**
@@ -255,9 +275,9 @@ public class FlexCommandContext {
      */
     public String getPathString(String[] parts) {
         StringBuilder b = new StringBuilder();
-        b.append(parts.get(0));
-        for (int i = 1; i < parts.size(); i++) {
-            b.append(" ").append(parts.get(i));
+        b.append(parts[0]);
+        for (int i = 1; i < parts.length; i++) {
+            b.append(" ").append(parts[i]);
         }
         
         return b.toString();
@@ -331,6 +351,6 @@ public class FlexCommandContext {
      * as a subcommand.
      */
     public void showParentSubcommands() {
-        getDispatcher().getParent().showSubcommands(this, getPathString(path.subList(0, path.size() - 1)));
+        getDispatcher().getParent().showSubcommands(this, getParentPathString());
     }
 }
