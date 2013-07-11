@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  *
  * Example:
  * <pre>
- * @FlexHandler("myplugin group add", permission = "myplugin.commands.add")
+ * \@FlexHandler("myplugin group add", permission = "myplugin.commands.add")
  * public boolean handleAddGroup(FlexCommandContext ctx) {
  *     // ...
  * }
