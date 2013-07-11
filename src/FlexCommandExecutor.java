@@ -67,13 +67,20 @@ public class FlexCommandExecutor implements CommandExecutor {
     /**
      * Logs an error that was probably caused by a client plugin.
      *
-     * @param e     the exception that was thrown
-     * @param msg   an accompanying message
+     * @param plugin the plugin that caused the exception, or null
+     * @param e      the exception that was thrown
+     * @param msg    an accompanying message
      */
-    public static void logException(Throwable e, String msg) {
+    public static void logException(Plugin plugin, Throwable e, String msg) {
         Bukkit.getLogger().log(Level.SEVERE, "[Flex] " + msg, e);
-        Bukkit.getLogger().log(Level.SEVERE, "[Flex] This is likely to be a bug in one or more of the plugins using the Flex command handling framework.");
-        Bukkit.getLogger().log(Level.SEVERE, "[Flex] Plugins using Flex: " + getClientsStr());
+        
+        if (plugin == null) {
+            Bukkit.getLogger().log(Level.SEVERE, "[Flex] This is likely to be a bug in one or more of the plugins using the Flex command handling framework.");
+            Bukkit.getLogger().log(Level.SEVERE, "[Flex] Plugins using Flex: " + getClientsStr());
+        }
+        else {
+            Bukkit.getLogger().log(Level.SEVERE, "[Flex] The plugin that caused this error is: " + plugin.getName());
+        }
     }
     
     // -------------------------------------------------------------------------
@@ -113,7 +120,7 @@ public class FlexCommandExecutor implements CommandExecutor {
                     String[] path = annotation.value().split(" ");
                     String rootName = path[0];
                     
-                    FlexHandlingContext hctx = new FlexHandlingContext(plugin, handler, m);
+                    FlexHandlingContext hctx = new FlexMethodHandlingContext(plugin, handler, m);
                     hctx.validate();
                     
                     root.add(path, hctx);
