@@ -43,7 +43,6 @@ public class FlexCommandContext {
      * The command path.
      */
     protected List<String> path;
-    protected StringBuilder pathBuilder; 
     
     /**
      * Constructor. The arguments should be those passed to onCommand by Bukkit.
@@ -60,7 +59,6 @@ public class FlexCommandContext {
         label = label_;
         args = args_;
         path = new ArrayList<String>();
-        pathBuilder = new StringBuilder();
     }
     
     /**
@@ -239,13 +237,30 @@ public class FlexCommandContext {
     }
     
     /**
-     * Returns the command path (the top-level command name followed by
+     * Returns the current command path (the top-level command name followed by
      * subcommand names) as a space-seperated string.
      *
      * @return the command path
      */
     public String getPathString() {
-        return pathBuilder.toString();
+        return getPathString(path);
+    }
+    
+    /**
+     * Returns a command path (the top-level command name followed by
+     * subcommand names) as a space-seperated string.
+     *
+     * @param parts the command path as an array
+     * @return      the command path as a string
+     */
+    public String getPathString(String[] parts) {
+        StringBuilder b = new StringBuilder();
+        b.append(parts.get(0));
+        for (int i = 1; i < parts.size(); i++) {
+            b.append(" ").append(parts.get(i));
+        }
+        
+        return b.toString();
     }
     
     /**
@@ -254,11 +269,6 @@ public class FlexCommandContext {
      * @param part the subcommand name to add
      */
     protected void pushPathComponent(String part) {
-        if (pathBuilder.length() > 0) {
-            pathBuilder.append(" ");
-        }
-        
-        pathBuilder.append(part);
         path.add(part);
     }
     
@@ -321,6 +331,6 @@ public class FlexCommandContext {
      * as a subcommand.
      */
     public void showParentSubcommands() {
-        getDispatcher().getParent().showSubcommands(this, getPathString());
+        getDispatcher().getParent().showSubcommands(this, getPathString(path.subList(0, path.size() - 1)));
     }
 }
