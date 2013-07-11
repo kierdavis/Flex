@@ -305,7 +305,7 @@ public class FlexCommandContext {
      * @return this command's dispatcher
      */
     public FlexDispatcher getDispatcher() {
-        return FlexCommandExecutor.getInstance().getRoot().traverse(path.toArray());
+        return FlexCommandExecutor.getInstance().getRoot().traverse(path.toArray(new String[0]));
     }
     
     /**
