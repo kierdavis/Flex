@@ -35,7 +35,11 @@ public class FlexMethodHandlingContext implements FlexHandlingContext {
     }
     
     public String getArgUsage() {
-        return annotation.argUsage();
+        return annotation.argUsage().length == 0 ? "" : annotation.argUsage();
+    }
+    
+    public String getPermission() {
+        return annotation.permission().length == 0 ? "" : annotation.permission();
     }
     
     protected String methodDesc() {
