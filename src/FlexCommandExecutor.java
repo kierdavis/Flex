@@ -191,4 +191,13 @@ public class FlexCommandExecutor implements CommandExecutor {
         FlexCommandContext ctx = new FlexCommandContext(sender, cmd, label, args);
         return root.dispatch(ctx);
     }
+    
+    /**
+     * Returns the root dispatcher.
+     * 
+     * @return the root dispatcher
+     */
+    public FlexRootDispatcher getRoot() {
+        return root;
+    }
 }

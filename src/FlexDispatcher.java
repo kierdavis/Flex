@@ -109,6 +109,16 @@ public class FlexDispatcher {
         }
         
         else {
+            showSubcommands(ctx, path);
+        }
+    }
+    
+    public void showSubcommands(FlexCommandContext ctx, String path) {
+        if (children == null || children.size() == 0) {
+            ctx.info("No subcommands for /" + path);
+        }
+        
+        else {
             ctx.info("Subcommands of /" + path + ":");
             
             Iterator<String> it = children.keySet().iterator();

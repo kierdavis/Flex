@@ -298,4 +298,20 @@ public class FlexCommandContext {
     public Logger getLogger() {
         return getServer().getLogger();
     }
+    
+    /**
+     * Returns the {@link FlexDispatcher} responsible for this command.
+     *
+     * @return this command's dispatcher
+     */
+    public FlexDispatcher getDispatcher() {
+        return FlexCommandExecutor.getInstance().traverse(path.toArray());
+    }
+    
+    /**
+     * Shows subcommand help for this command.
+     */
+    public void showSubcommands() {
+        getDispatcher().showSubcommands();
+    }
 }
