@@ -7,15 +7,21 @@ import java.util.Map;
 
 public class FlexDispatcher {
     protected FlexHandlingContext hctx;
+    protected FlexDispatcher parent;
     protected Map<String, FlexDispatcher> children;
     
     public FlexDispatcher() {
         hctx = null;
+        parent = null;
         children = null;
     }
     
     public FlexHandlingContext getHandlingContext() {
         return hctx;
+    }
+    
+    public FlexDispatcher getParent() {
+        return parent;
     }
     
     protected Map<String, FlexDispatcher> getChildren() {
@@ -30,6 +36,7 @@ public class FlexDispatcher {
         FlexDispatcher child = getChildren().get(name.toLowerCase());
         if (child == null) {
             child = new FlexDispatcher();
+            child.parent = this;
             getChildren().put(name.toLowerCase(), child);
         }
         

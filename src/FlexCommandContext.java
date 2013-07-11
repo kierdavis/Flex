@@ -309,9 +309,18 @@ public class FlexCommandContext {
     }
     
     /**
-     * Shows subcommand help for this command.
+     * Shows subcommand help for this command. Use when implementing help as a
+     * special case of a command.
      */
     public void showSubcommands() {
         getDispatcher().showSubcommands(this, getPathString());
+    }
+    
+    /**
+     * Shows subcommand help for the parent command. Use when implementing help
+     * as a subcommand.
+     */
+    public void showSubcommands() {
+        getDispatcher().getParent().showSubcommands(this, getPathString());
     }
 }
