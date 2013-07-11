@@ -99,7 +99,7 @@ public class FlexDispatcher {
             return hctx.invoke(ctx);
         }
         
-        invalidCommand(ctx, ctx.getPath());
+        invalidCommand(ctx, ctx.getPathString());
         return false;
     }
     

@@ -1,13 +1,15 @@
 package com.kierdavis.flex;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.Server;
 
 /**
  * Contains the information provided to the top-level onCommand implementation,
@@ -38,10 +40,10 @@ public class FlexCommandContext {
     protected String[] args;
     
     /**
-     * Incrementatlly builds the command path (the top-level command name plus
-     * subcommand names).
+     * The command path.
      */
-    protected StringBuilder pathBuilder;
+    protected List<String> path;
+    protected StringBuilder pathBuilder; 
     
     /**
      * Constructor. The arguments should be those passed to onCommand by Bukkit.
@@ -57,6 +59,7 @@ public class FlexCommandContext {
         cmd = cmd_;
         label = label_;
         args = args_;
+        path = new ArrayList<String>();
         pathBuilder = new StringBuilder();
     }
     
@@ -150,7 +153,7 @@ public class FlexCommandContext {
             return args[pos];
         }
         else {
-            error("Not enough arguments for command '" + getPath() + "'");
+            error("Not enough arguments for command '" + getPathString() + "'");
             return null;
         }
     }
@@ -227,16 +230,26 @@ public class FlexCommandContext {
     
     /**
      * Returns the command path (the top-level command name followed by
+     * subcommand names).
+     *
+     * @return the command path
+     */
+    public List<String> getPath() {
+        return path;
+    }
+    
+    /**
+     * Returns the command path (the top-level command name followed by
      * subcommand names) as a space-seperated string.
      *
      * @return the command path
      */
-    public String getPath() {
+    public String getPathString() {
         return pathBuilder.toString();
     }
     
     /**
-     * Appends a path component (subcommand name) to {@link #pathBuilder}.
+     * Appends a path component (subcommand name) to {@link #path}.
      *
      * @param part the subcommand name to add
      */
@@ -246,6 +259,7 @@ public class FlexCommandContext {
         }
         
         pathBuilder.append(part);
+        path.add(part);
     }
     
     /**
