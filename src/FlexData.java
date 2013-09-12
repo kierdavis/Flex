@@ -52,7 +52,9 @@ public class FlexData {
                 File parent = configFile.getParentFile();
                 if (!parent.exists()) parent.mkdirs();
                 
-                try config.save(configFile);
+                try {
+                    config.save(configFile);
+                }
                 catch (IOException e) {
                     FlexCommandExecutor.logException(null, e, "Unhandled IOException when saving configuration!");
                 }
