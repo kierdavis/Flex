@@ -151,7 +151,7 @@ public class FlexCommandContext {
             return args[pos];
         }
         else {
-            error(FlexData.getInstance().getText("not-enough-args", getPathStr()));
+            error(FlexData.getInstance().getText("not-enough-args", getPathString()));
             return null;
         }
     }
