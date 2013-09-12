@@ -1,6 +1,7 @@
 package com.kierdavis.flex;
 
 import java.io.File;
+import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -51,7 +52,10 @@ public class FlexData {
                 File parent = configFile.getParentFile();
                 if (!parent.exists()) parent.mkdirs();
                 
-                config.save(configFile);
+                try config.save(configFile);
+                catch (IOException e) {
+                    FlexCommandExecutor.logException(null, e, "Unhandled IOException when saving configuration!");
+                }
             }
         }
         

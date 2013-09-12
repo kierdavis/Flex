@@ -74,11 +74,12 @@ public class FlexCommandExecutor implements CommandExecutor {
     public static void logException(Plugin plugin, Throwable e, String msg) {
         Bukkit.getLogger().log(Level.SEVERE, "[Flex] " + msg, e);
         
-        if (plugin == null) {
-            Bukkit.getLogger().log(Level.SEVERE, "[Flex] This is likely to be a bug in one or more of the plugins using the Flex command handling framework.");
+        if (plugin != null) {
+            /*
+            Bukkit.getLogger().log(Level.SEVERE, "[Flex] This may to be a bug in one or more of the plugins using the Flex command handling framework.");
             Bukkit.getLogger().log(Level.SEVERE, "[Flex] Plugins using Flex: " + getClientsStr());
         }
-        else {
+        else {*/
             Bukkit.getLogger().log(Level.SEVERE, "[Flex] The plugin that caused this error is: " + plugin.getName());
         }
     }
