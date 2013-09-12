@@ -1,4 +1,4 @@
-package com.kierdavis.ultracommand;
+package com.kierdavis.flex;
 
 import java.io.File;
 import org.bukkit.Bukkit;
@@ -37,6 +37,8 @@ public class FlexData {
     
     public FileConfiguration getConfig() {
         if (config == null) {
+            File configFile = new File(dataFolder, "config.yml");
+            
             if (configFile.exists()) {
                 config = YamlConfiguration.loadConfiguration(configFile);
                 setDefaults(config);
@@ -45,6 +47,10 @@ public class FlexData {
             else {
                 config = new YamlConfiguration();
                 setDefaults(config);
+                
+                File parent = configFile.getParentFile();
+                if (!parent.exists()) parent.mkdirs();
+                
                 config.save(configFile);
             }
         }
