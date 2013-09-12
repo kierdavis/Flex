@@ -112,7 +112,7 @@ public class FlexDispatcher {
     
     protected void invalidCommand(FlexCommandContext ctx, String path) {
         if (children == null) {
-            ctx.error("No such command /" + path);
+            ctx.error(FlexData.getInstance().getText("invalid-command", path));
         }
         
         else {
@@ -122,11 +122,11 @@ public class FlexDispatcher {
     
     public void showSubcommands(FlexCommandContext ctx, String path) {
         if (children == null || children.size() == 0) {
-            ctx.info("No subcommands for /" + path);
+            ctx.info(FlexData.getInstance().getText("no-subcommands", path));
         }
         
         else {
-            ctx.info("Subcommands of /" + path + ":");
+            ctx.info(FlexData.getInstance().getText("subcommand-list", path));
             
             String mainArgUsage = "";
             

@@ -98,7 +98,7 @@ public class FlexCommandContext {
             return (Player) sender;
         }
         else {
-            error("This command can only be used by players.");
+            error(FlexData.getInstance().getText("players-only"));
             return null;
         }
     }
@@ -151,7 +151,7 @@ public class FlexCommandContext {
             return args[pos];
         }
         else {
-            error("Not enough arguments for command '" + getPathString() + "'");
+            error(FlexData.getInstance().getText("not-enough-args", getPathStr()));
             return null;
         }
     }

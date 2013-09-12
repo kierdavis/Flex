@@ -62,14 +62,14 @@ public class FlexMethodHandlingContext implements FlexHandlingContext {
     public boolean invoke(FlexCommandContext ctx) {
         if (annotation.permission().length() > 0) {
             if (!ctx.getSender().hasPermission(annotation.permission())) {
-                ctx.error("You don't have permission to use this command.");
+                ctx.error(FlexData.getInstance().getText("no-permission"));
                 return false;
             }
         }
         
         if (annotation.playerOnly()) {
             if (!ctx.isPlayer()) {
-                ctx.error("This command can only be used by players.");
+                ctx.error(FlexData.getInstance().getText("players-only"));
                 return false;
             }
         }
@@ -99,12 +99,12 @@ public class FlexMethodHandlingContext implements FlexHandlingContext {
         }
         catch (IllegalAccessException e) {
             FlexCommandExecutor.logException(plugin, e, "Unexpected IllegalAccessException when attempting to invoke " + methodDesc());
-            ctx.error("There was an unhandled error while executing the command. Please contact an administrator.");
+            ctx.error(FlexData.getInstance().getText("internal-error"));
             return false;
         }
         catch (InvocationTargetException e) {
             FlexCommandExecutor.logException(plugin, e, "Unexpected InvocationTargetException when attempting to invoke " + methodDesc());
-            ctx.error("There was an unhandled error while executing the command. Please contact an administrator.");
+            ctx.error(FlexData.getInstance().getText("internal-error"));
             return false;
         }
     }
