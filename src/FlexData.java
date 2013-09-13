@@ -3,8 +3,8 @@ package com.kierdavis.flex;
 import java.io.File;
 import java.io.IOException;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.MemorySection;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -27,7 +27,7 @@ public class FlexData {
         dataFolder = new File(pluginsFolder, "Flex");
     }
     
-    protected void setDefaults(ConfigurationSection c) {
+    protected void setDefaults(Configuration c) {
         c.set("text.invalid-command", "No such command /%s.");
         c.set("text.no-subcommands", "No subcommands for command /%s.");
         c.set("text.subcommand-list", "Subcommands of /%s:");
@@ -44,7 +44,7 @@ public class FlexData {
             if (configFile.exists()) {
                 config = YamlConfiguration.loadConfiguration(configFile);
                 
-                defaults = new MemoryConfiguration();
+                Configuration defaults = new MemoryConfiguration();
                 setDefaults(defaults);
                 config.addDefaults(defaults);
             }
@@ -56,6 +56,7 @@ public class FlexData {
                 File parent = configFile.getParentFile();
                 if (!parent.exists()) parent.mkdirs();
                 
+                Bukkit.getLogger().info("[Flex] Creating " + configFile.toString());
                 try {
                     config.save(configFile);
                 }
