@@ -211,7 +211,7 @@ public class FlexCommandContext {
     public String argsString(int start) {
         StringBuilder b = new StringBuilder();
         for (int i = start; i < args.length; i++) {
-            if (i > 0) b.append(" ");
+            if (i > start) b.append(" ");
             b.append(args[i]);
         }
         return b.toString();
