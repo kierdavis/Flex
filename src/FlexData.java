@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.MemorySection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -27,13 +28,13 @@ public class FlexData {
     }
     
     protected void setDefaults(ConfigurationSection c) {
-        c.addDefault("text.invalid-command", "No such command /%s.");
-        c.addDefault("text.no-subcommands", "No subcommands for command /%s.");
-        c.addDefault("text.subcommand-list", "Subcommands of /%s:");
-        c.addDefault("text.no-permission", "You don't have permission to use this command.");
-        c.addDefault("text.players-only", "This command can only be used by players.");
-        c.addDefault("text.internal-error", "There was an internal error while running the command. Please contact an administrator.");
-        c.addDefault("text.not-enough-args", "Not enough arguments provided to command /%s.");
+        c.set("text.invalid-command", "No such command /%s.");
+        c.set("text.no-subcommands", "No subcommands for command /%s.");
+        c.set("text.subcommand-list", "Subcommands of /%s:");
+        c.set("text.no-permission", "You don't have permission to use this command.");
+        c.set("text.players-only", "This command can only be used by players.");
+        c.set("text.internal-error", "There was an internal error while running the command. Please contact an administrator.");
+        c.set("text.not-enough-args", "Not enough arguments provided to command /%s.");
     }
     
     public FileConfiguration getConfig() {
@@ -42,7 +43,10 @@ public class FlexData {
             
             if (configFile.exists()) {
                 config = YamlConfiguration.loadConfiguration(configFile);
-                setDefaults(config);
+                
+                defaults = new MemoryConfiguration();
+                setDefaults(defaults);
+                config.addDefaults(defaults);
             }
             
             else {
