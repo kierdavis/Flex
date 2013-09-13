@@ -39,6 +39,9 @@ public class FlexCommandExecutor implements CommandExecutor {
     public static FlexCommandExecutor getInstance() {
         if (instance == null) {
             instance = new FlexCommandExecutor();
+            
+            // Initialise FlexData at startup
+            FlexData.getInstance();
         }
         
         return instance;
