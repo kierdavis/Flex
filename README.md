@@ -8,12 +8,12 @@ easier.
 
 ### Stable
 
-* Version: 0.2.10
+* Version: 0.4.2
 * [Download][stable-dl]
 * [API Docs][stable-docs]
 
-[stable-dl]: http://bukkit.kierdavis.com/Flex/v0.2.10/Flex.jar
-[stable-docs]: http://bukkit.kierdavis.com/Flex/v0.2.10/javadoc/
+[stable-dl]: http://bukkit.kierdavis.com/Flex/v0.4.2/Flex.jar
+[stable-docs]: http://bukkit.kierdavis.com/Flex/v0.4.2/javadoc/
 
 ### Dev
 
